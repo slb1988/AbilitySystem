@@ -6,6 +6,7 @@
 #include "AttributeSet.h"
 #include "AttributeSetBase.generated.h"
 
+struct FGameplayEffectModCallbackData;
 /**
  * 
  */
@@ -20,5 +21,5 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="AttributeSetBase")
 	FGameplayAttributeData Health;
 
-	
+	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
 };
