@@ -49,7 +49,15 @@ public:
 	
 	UFUNCTION(BlueprintImplementableEvent, Category="CharacterBase", meta=(AdvancedDisplay="Die"))
 	void BP_Die();
+	
+	UFUNCTION(BlueprintCallable, Category="CharacterBase")
+	bool IsOtherHostile(ACharacterBase* Other);
 
+	uint8 GetTeamID() const;
 private:
 	bool bIsDie;
+	uint8 TeamID;
+	void AutoDeterminTeamIDbyControllerType();
+
+	void Dead();
 };
