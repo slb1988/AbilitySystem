@@ -15,6 +15,9 @@ void UAttributeSetBase::PostGameplayEffectExecute(const FGameplayEffectModCallba
 {
 	if (Data.EvaluatedData.Attribute.GetUProperty() == FindFieldChecked<FProperty>(UAttributeSetBase::StaticClass(), GET_MEMBER_NAME_CHECKED(UAttributeSetBase, Health)))
 	{
+		Health.SetCurrentValue(FMathf::Clamp(Health.GetCurrentValue(), 0.0f, MaxHealth.GetCurrentValue()));
+		Health.SetBaseValue(FMathf::Clamp(Health.GetBaseValue(), 0.0f, MaxHealth.GetBaseValue()));
+		
 		UE_LOG(LogTemp, Warning, TEXT("Ouch, I took some damage, now my health is : %f"), Health.GetCurrentValue());
 
 		OnHealthChange.Broadcast(Health.GetCurrentValue(), MaxHealth.GetCurrentValue());

@@ -47,4 +47,9 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category="CharacterBase", meta=(AdvancedDisplay="OnHealthChanged"))
 	void BP_OnHealthChanged(float Health, float MaxHealth);
 	
+	UFUNCTION(BlueprintImplementableEvent, Category="CharacterBase", meta=(AdvancedDisplay="Die"))
+	void BP_Die();
+
+private:
+	bool bIsDie;
 };

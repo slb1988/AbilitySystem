@@ -13,6 +13,7 @@ ACharacterBase::ACharacterBase()
 
 	AbilitySystemComp = CreateDefaultSubobject<UAbilitySystemComponent>("AbilitySystemComp");
 	AttributeSetBaseComp = CreateDefaultSubobject<UAttributeSetBase>("AttributeSetBaseComp");
+	bIsDie = false;
 }
 
 // Called when the game starts or when spawned
@@ -58,6 +59,11 @@ void ACharacterBase::AquireAbility(TSubclassOf<UGameplayAbility> AbilityToAquire
 
 void ACharacterBase::OnHealthChanged(float Health, float MaxHealth)
 {
+	if (Health <= 0.0f && !bIsDie)
+	{
+		bIsDie = true;
+		BP_Die();
+	}
 	BP_OnHealthChanged(Health, MaxHealth);
 }
 
