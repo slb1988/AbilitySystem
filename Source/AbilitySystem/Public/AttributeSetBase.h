@@ -8,7 +8,7 @@
 
 struct FGameplayEffectModCallbackData;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnHealthChange, float, Health, float, MaxHealth);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnHealthChangeDelegate, float, Health, float, MaxHealth);
 /**
  * 
  */
@@ -26,7 +26,21 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="AttributeSetBase")
 	FGameplayAttributeData MaxHealth;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="AttributeSetBase")
+	FGameplayAttributeData Mana;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="AttributeSetBase")
+	FGameplayAttributeData MaxMana;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="AttributeSetBase")
+	FGameplayAttributeData Strength;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="AttributeSetBase")
+	FGameplayAttributeData MaxStrength;
+
 	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
 
-	FOnHealthChange OnHealthChange;
+	FOnHealthChangeDelegate OnHealthChange;
+	FOnHealthChangeDelegate OnManaChange;
+	FOnHealthChangeDelegate OnStrengthChange;
 };

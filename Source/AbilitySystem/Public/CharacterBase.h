@@ -20,6 +20,7 @@ public:
 	ACharacterBase();
 
 protected:
+	UFUNCTION()
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
@@ -43,9 +44,19 @@ public:
 
 	UFUNCTION()
 	void OnHealthChanged(float Health, float MaxHealth);
+	UFUNCTION()
+	void OnManaChanged(float Mana, float MaxMana);
+	UFUNCTION()
+	void OnStrengthChanged(float Strength, float MaxStrength);
 
 	UFUNCTION(BlueprintImplementableEvent, Category="CharacterBase", meta=(AdvancedDisplay="OnHealthChanged"))
 	void BP_OnHealthChanged(float Health, float MaxHealth);
+	
+	UFUNCTION(BlueprintImplementableEvent, Category="CharacterBase", meta=(AdvancedDisplay="OnManaChanged"))
+	void BP_OnManaChanged(float Mana, float MaxMana);
+
+	UFUNCTION(BlueprintImplementableEvent, Category="CharacterBase", meta=(AdvancedDisplay="OnStrengthChanged"))
+	void BP_OnStrengthChanged(float Strength, float MaxStrength);
 	
 	UFUNCTION(BlueprintImplementableEvent, Category="CharacterBase", meta=(AdvancedDisplay="Die"))
 	void BP_Die();
